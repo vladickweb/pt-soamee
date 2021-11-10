@@ -8,11 +8,12 @@ export default function Books() {
 	const booksService = new BooksService()
 
 	useEffect(() => {
-		const getBooks = () => {
-			booksService.getBooks().then(data => setBooks(data.data.books)).catch(err => console.log(err))
-		}
 		getBooks()
 	}, [])
+
+	const getBooks = () => {
+		booksService.getBooks().then(data => setBooks(data.data.books)).catch(err => console.log(err))
+	}
 
 	const displayBooks = () => {
 		if (books) {
@@ -30,6 +31,7 @@ export default function Books() {
 		<div className='container'>
 			<h1 className='text-center mt-5'>Books</h1>
 			<div className='row justify-content-center align-items center mt-5'>{displayBooks()}</div>
+			{books?.length === 0 ? <h2 className='text-center'>No books found. You can create one by clicking the button!</h2> : null}
 			<Modal />
 		</div>
 	)

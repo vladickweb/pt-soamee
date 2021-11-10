@@ -34,6 +34,7 @@ export default function Modal() {
 											width={100}
 											height={100}
 											alt='Book image'
+											unoptimized
 										/>
 										<figcaption>Book</figcaption>
 									</figure>
@@ -48,6 +49,7 @@ export default function Modal() {
 											width={100}
 											height={100}
 											alt='Author image'
+											unoptimized
 										/>
 
 										<figcaption>Author</figcaption>
@@ -68,7 +70,7 @@ export default function Modal() {
 			</div>
 
 			<button type='button' className={classes.add} data-bs-toggle='modal' data-bs-target='#exampleModal'>
-				<Image loader={() => srcAdd} src={srcAdd} width={100} height={100} alt='Author image' />
+				<Image loader={() => srcAdd} src={srcAdd} width={100} height={100} alt='Author image' unoptimized />
 			</button>
 		</Fragment>
 	)
