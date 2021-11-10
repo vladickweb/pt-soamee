@@ -11,24 +11,25 @@ export default function Edit() {
 	const router = useRouter()
 
 	useEffect(() => {
+		const fetchAuthor = () => {
+			const { id } = router.query
+
+			booksService
+				.getAuthor(id)
+				.then(data => {
+					const { author } = data.data
+					setFirst_name(author.first_name)
+					setLast_name(author.last_name)
+				})
+				.catch(err => console.log(err))
+		}
 		fetchAuthor()
 	}, [])
-
-	const fetchAuthor = () => {
-		const { id } = router.query
-		booksService
-			.getAuthor(id)
-			.then(data => {
-				const { author } = data.data
-				setFirst_name(author.first_name)
-				setLast_name(author.last_name)
-			})
-			.catch(err => console.log(err))
-	}
 
 	const handleSubmit = e => {
 		e.preventDefault()
 		const { id } = router.query
+
 		booksService
 			.updateAuthor(id, { first_name, last_name })
 			.then(() => {

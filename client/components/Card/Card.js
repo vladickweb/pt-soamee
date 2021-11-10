@@ -63,11 +63,11 @@ export default function Card({ book, author, getBooks, getAuthors }) {
 					<div className='d-flex justify-content-center flex-column'>
 						<Link href={`/books/${book._id}`}>
 							<a href='#' className=' btn btn-light btn-block mb-3'>
-								Editar
+								Edit
 							</a>
 						</Link>
-						<a href='#' onClick={() => removeItem()} className='btn btn-light btn-block'>
-							Borrar
+						<a href='#' onClick={() => removeItem()} className='btn btn-warning btn-block'>
+							Delete
 						</a>
 					</div>
 				) : null}
@@ -77,7 +77,7 @@ export default function Card({ book, author, getBooks, getAuthors }) {
 						<Link href={`/authors/${author._id}`}>
 							<a className=' btn btn-light btn-block mb-3'>Edit</a>
 						</Link>
-						<button onClick={() => removeItem()} className='btn btn-light btn-block'>
+						<button onClick={() => removeItem()} className='btn btn-warning btn-block'>
 							Delete
 						</button>
 					</div>

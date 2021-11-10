@@ -3,7 +3,7 @@ import BooksService from '../../services/BooksService'
 import { useRouter } from 'next/router'
 import Swal from 'sweetalert2'
 
-export default function create() {
+export default function Create() {
 	const [ name, setName ] = useState(null)
 	const [ author, setAuthor ] = useState(null)
 	const [ isbn, setIsbn ] = useState(null)
@@ -12,13 +12,12 @@ export default function create() {
 	const router = useRouter()
 
 	useEffect(() => {
+		const getAllAuthors = () => {
+			booksService.getAuthors().then(data => setAuthors(data.data.authors)).catch(err => console.log(err))
+		}
 		removeModal()
 		getAllAuthors()
 	}, [])
-
-	const getAllAuthors = () => {
-		booksService.getAuthors().then(data => setAuthors(data.data.authors)).catch(err => console.log(err))
-	}
 
 	const removeModal = () => {
 		const modal = document.querySelector('.modal-backdrop')

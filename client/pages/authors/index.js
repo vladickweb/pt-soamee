@@ -8,12 +8,11 @@ export default function Authors() {
 	const booksService = new BooksService()
 
 	useEffect(() => {
+		const getAuthors = () => {
+			booksService.getAuthors().then(data => setAuthors(data.data.authors))
+		}
 		getAuthors()
 	}, [])
-
-	const getAuthors = () => {
-		booksService.getAuthors().then(data => setAuthors(data.data.authors))
-	}
 
 	const displayBooks = () => {
 		if (authors) {
@@ -29,7 +28,7 @@ export default function Authors() {
 
 	return (
 		<div className='container'>
-        <h1 className="text-center mt-5">Authors</h1>
+			<h1 className='text-center mt-5'>Authors</h1>
 			<div className='row justify-content-center align-items center mt-5'>{displayBooks()}</div>
 			<Modal />
 		</div>

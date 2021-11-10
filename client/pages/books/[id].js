@@ -14,32 +14,34 @@ export default function Edit() {
 	const router = useRouter()
 
 	useEffect(() => {
+		const fetchBook = () => {
+			const { id } = router.query
+
+			booksService
+				.getBook(id)
+				.then(data => {
+					const { book } = data.data
+					setName(book.name)
+					setAuthor(book.author)
+					setIsbn(book.isbn)
+				})
+				.catch(err => console.log(err))
+		}
 		fetchBook()
 	}, [])
 
 	useEffect(
 		() => {
+			const fetchAuthors = () => {
+				booksService
+					.getAuthors()
+					.then(data => setAuthors(data.data.authors))
+					.catch(err => console.log(err))
+			}
 			fetchAuthors()
 		},
 		[ author ]
 	)
-
-	const fetchBook = () => {
-		const { id } = router.query
-		booksService
-			.getBook(id)
-			.then(data => {
-				const { book } = data.data
-				setName(book.name)
-				setAuthor(book.author)
-				setIsbn(book.isbn)
-			})
-			.catch(err => console.log(err))
-	}
-
-	const fetchAuthors = () => {
-		booksService.getAuthors().then(data => setAuthors(data.data.authors))
-	}
 
 	const displayAuthors = () => {
 		return authors.map(mapAuthor => {
@@ -54,6 +56,7 @@ export default function Edit() {
 	const handleSubmit = e => {
 		e.preventDefault()
 		const { id } = router.query
+		
 		booksService
 			.updateBook(id, { name, isbn, author })
 			.then(() => {

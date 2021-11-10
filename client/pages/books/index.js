@@ -8,12 +8,11 @@ export default function Books() {
 	const booksService = new BooksService()
 
 	useEffect(() => {
+		const getBooks = () => {
+			booksService.getBooks().then(data => setBooks(data.data.books)).catch(err => console.log(err))
+		}
 		getBooks()
 	}, [])
-
-	const getBooks = () => {
-		booksService.getBooks().then(data => setBooks(data.data.books)).catch(err => console.log(err))
-	}
 
 	const displayBooks = () => {
 		if (books) {

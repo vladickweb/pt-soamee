@@ -3,7 +3,7 @@ import BooksService from '../../services/BooksService'
 import { useRouter } from 'next/router'
 import Swal from 'sweetalert2'
 
-export default function create() {
+export default function Create() {
 	const [ first_name, setFirst_name ] = useState(null)
 	const [ last_name, setLast_name ] = useState(null)
 

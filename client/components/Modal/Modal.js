@@ -1,8 +1,13 @@
-import { Fragment } from "react"
+import { Fragment } from 'react'
 import classes from './Modal.module.sass'
-import Link from "next/link"
+import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Modal() {
+	const srcBook = 'https://cdn.picpng.com/book/book-illustration-30958.png'
+	const srcAuthor = 'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/1688204/writer-clipart-md.png'
+	const srcAdd = 'http://pngimg.com/uploads/plus/plus_PNG115.png'
+
 	return (
 		<Fragment>
 			<div
@@ -23,7 +28,13 @@ export default function Modal() {
 							<Link href='/books/create' data-bs-dismiss='modal' onClick={() => hideModal()}>
 								<a>
 									<figure>
-										<img src='https://cdn.picpng.com/book/book-illustration-30958.png' alt='book' />
+										<Image
+											loader={() => srcBook}
+											src={srcBook}
+											width={100}
+											height={100}
+											alt='Book image'
+										/>
 										<figcaption>Book</figcaption>
 									</figure>
 								</a>
@@ -31,10 +42,14 @@ export default function Modal() {
 							<Link href='/authors/create'>
 								<a>
 									<figure>
-										<img
-											src='https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/1688204/writer-clipart-md.png'
-											alt='author'
+										<Image
+											loader={() => srcAuthor}
+											src={srcAuthor}
+											width={100}
+											height={100}
+											alt='Author image'
 										/>
+
 										<figcaption>Author</figcaption>
 									</figure>
 								</a>
@@ -53,7 +68,7 @@ export default function Modal() {
 			</div>
 
 			<button type='button' className={classes.add} data-bs-toggle='modal' data-bs-target='#exampleModal'>
-				<img src='http://pngimg.com/uploads/plus/plus_PNG115.png' alt='add' height={'100%'} width={'100%'} />
+				<Image loader={() => srcAdd} src={srcAdd} width={100} height={100} alt='Author image' />
 			</button>
 		</Fragment>
 	)
