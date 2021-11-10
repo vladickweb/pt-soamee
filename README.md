@@ -31,4 +31,4 @@ cd client
 npm start
 ```
 
-*By default the server starts on port 9000 and the client on port 3000, this can be changed in the configuration files. The .env is published so that the company can test it. This is done thoroughly.*
+*By default the server starts on port 5005 and the client on port 3000, this can be changed in the configuration files. The .env is published so that the company can test it. This is done thoroughly.*
