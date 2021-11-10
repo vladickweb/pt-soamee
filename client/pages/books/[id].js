@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import BooksService from '../../services/BooksService'
 import { useRouter } from 'next/router'
 import { Fragment } from 'react'
+import Swal from 'sweetalert2'
 
 export default function Edit() {
 	const [ name, setName ] = useState(null)
@@ -44,9 +45,7 @@ export default function Edit() {
 		return authors.map(mapAuthor => {
 			return (
 				<Fragment key={mapAuthor._id}>
-					<option value={mapAuthor._id} >
-						{`${mapAuthor.first_name} ${mapAuthor.last_name}`}
-					</option>
+					<option value={mapAuthor._id}>{`${mapAuthor.first_name} ${mapAuthor.last_name}`}</option>
 				</Fragment>
 			)
 		})
@@ -57,7 +56,16 @@ export default function Edit() {
 		const { id } = router.query
 		booksService
 			.updateBook(id, { name, isbn, author })
-			.then(() => router.push('/books'))
+			.then(() => {
+				Swal.fire({
+					position: 'top-end',
+					icon: 'success',
+					title: 'Book successfully updated',
+					showConfirmButton: false,
+					timer: 1500
+				})
+				router.push('/books')
+			})
 			.catch(err => console.log(err))
 	}
 

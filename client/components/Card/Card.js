@@ -1,20 +1,39 @@
 import classes from './Card.module.sass'
 import Link from 'next/link'
 import BooksService from '../../services/BooksService'
+import Swal from 'sweetalert2'
 
 export default function Card({ book, author, getBooks, getAuthors }) {
 	const booksService = new BooksService()
-	
+
 	const removeItem = () => {
-
 		if (book) {
-			booksService.deleteBook(book._id)
-				.then(() => getBooks())
+			booksService
+				.deleteBook(book._id)
+				.then(() => {
+					Swal.fire({
+						position: 'top-end',
+						icon: 'success',
+						title: 'Book successfully removed',
+						showConfirmButton: false,
+						timer: 1500
+					})
+					getBooks()
+				})
 				.catch(err => console.log(err))
-
-		} else if (author){
-			booksService.deleteAuthor(author._id)
-				.then(res => getAuthors())
+		} else if (author) {
+			booksService
+				.deleteAuthor(author._id)
+				.then(() => {
+					Swal.fire({
+						position: 'top-end',
+						icon: 'success',
+						title: 'Author successfully deleted and all the books that depended on it',
+						showConfirmButton: false,
+						timer: 1500
+					})
+					getAuthors()
+				})
 				.catch(err => console.log(err))
 		}
 	}

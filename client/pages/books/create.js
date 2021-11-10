@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import BooksService from '../../services/BooksService'
 import { useRouter } from 'next/router'
+import Swal from 'sweetalert2'
 
 export default function create() {
 	const [ name, setName ] = useState(null)
@@ -27,9 +28,18 @@ export default function create() {
 	const handleSubmit = e => {
 		e.preventDefault()
 		booksService
-      .createBook({ name, author, isbn })
-      .then(() => router.push('/books'))
-      .catch(err => console.log(err))
+			.createBook({ name, author, isbn })
+			.then(() => {
+				Swal.fire({
+					position: 'top-end',
+					icon: 'success',
+					title: 'Book successfully created',
+					showConfirmButton: false,
+					timer: 1500
+				})
+				router.push('/books')
+			})
+			.catch(err => console.log(err))
 	}
 
 	const displayAuthors = () => {
@@ -43,7 +53,6 @@ export default function create() {
 	}
 
 	return (
-
 		<div className='container mt-5'>
 			<div className='row justify-content-center algin-items-center h-100'>
 				<h1 className='text-center mb-5'>Add a book</h1>

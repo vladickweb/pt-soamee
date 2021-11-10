@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import BooksService from '../../services/BooksService'
 import { useRouter } from 'next/router'
-import { Fragment } from 'react'
+import Swal from 'sweetalert2'
 
 export default function Edit() {
 	const [ first_name, setFirst_name ] = useState(null)
@@ -31,7 +31,16 @@ export default function Edit() {
 		const { id } = router.query
 		booksService
 			.updateAuthor(id, { first_name, last_name })
-			.then(() => router.push('/authors'))
+			.then(() => {
+				Swal.fire({
+					position: 'top-end',
+					icon: 'success',
+					title: 'Author successfully updated',
+					showConfirmButton: false,
+					timer: 1500
+				})
+				router.push('/authors')
+			})
 			.catch(err => console.log(err))
 	}
 

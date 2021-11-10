@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import BooksService from '../../services/BooksService'
 import { useRouter } from 'next/router'
+import Swal from 'sweetalert2'
 
 export default function create() {
 	const [ first_name, setFirst_name ] = useState(null)
@@ -13,8 +14,6 @@ export default function create() {
 		removeModal()
 	}, [])
 
-
-
 	const removeModal = () => {
 		const modal = document.querySelector('.modal-backdrop')
 		modal?.className === 'modal-backdrop fade show' && modal.classList.remove('modal-backdrop')
@@ -23,11 +22,19 @@ export default function create() {
 	const handleSubmit = e => {
 		e.preventDefault()
 		booksService
-			.createAuthor({first_name, last_name})
-      .then(() => router.push('/authors'))
-      .catch(err => console.log(err))
+			.createAuthor({ first_name, last_name })
+			.then(() => {
+				Swal.fire({
+					position: 'top-end',
+					icon: 'success',
+					title: 'Author successfully created',
+					showConfirmButton: false,
+					timer: 1500
+				})
+				router.push('/authors')
+			})
+			.catch(err => console.log(err))
 	}
-
 
 	return (
 		<div className='container mt-5'>
@@ -70,4 +77,4 @@ export default function create() {
 		</div>
 	)
 }
-// 
+//
