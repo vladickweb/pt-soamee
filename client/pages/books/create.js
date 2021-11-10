@@ -43,6 +43,7 @@ export default function create() {
 	}
 
 	return (
+
 		<div className='container mt-5'>
 			<div className='row justify-content-center algin-items-center h-100'>
 				<h1 className='text-center mb-5'>Add a book</h1>
@@ -66,10 +67,10 @@ export default function create() {
 								<p>Author</p>
 								<select
 									className='form-select'
-									aria-label='Default select example'
+									aria-label='select'
 									onChange={e => setAuthor(e.target.value)}
 									required>
-									<option disabled selected />
+									<option value=''>Select an author</option>
 									{authors ? displayAuthors() : null}
 								</select>
 							</label>

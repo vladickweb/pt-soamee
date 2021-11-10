@@ -49,7 +49,7 @@ export default function Edit() {
 									className='form-control'
 									autoComplete='off'
 									required
-									value={first_name}
+									value={first_name === null ? '' : first_name}
 									onChange={e => setFirst_name(e.target.value)}
 								/>
 							</label>
@@ -63,7 +63,7 @@ export default function Edit() {
 									className='form-control'
 									autoComplete='off'
 									required
-									value={last_name}
+									value={last_name === null ? '' : last_name}
 									onChange={e => setLast_name(e.target.value)}
 								/>
 							</label>

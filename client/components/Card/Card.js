@@ -1,7 +1,6 @@
 import classes from './Card.module.sass'
 import Link from 'next/link'
 import BooksService from '../../services/BooksService'
-import { getAuthors } from '../../../server/api/api.controllers'
 
 export default function Card({ book, author, getBooks, getAuthors }) {
 	const booksService = new BooksService()
@@ -10,7 +9,7 @@ export default function Card({ book, author, getBooks, getAuthors }) {
 
 		if (book) {
 			booksService.deleteBook(book._id)
-				.then(res => getBooks())
+				.then(() => getBooks())
 				.catch(err => console.log(err))
 
 		} else if (author){
@@ -35,7 +34,7 @@ export default function Card({ book, author, getBooks, getAuthors }) {
 
 				{book ? (
 					<div>
-						<h6 className='card-subtitle mb-2 text-light'>{`${book.author.first_name} ${book.author
+						<h6 className='card-subtitle mb-2 text-light'>{`${book.author?.first_name} ${book.author
 							.last_name}`}</h6>
 						<small className='card-text mb-0'>{book.isbn}</small>
 					</div>

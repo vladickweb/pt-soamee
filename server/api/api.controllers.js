@@ -50,9 +50,9 @@ exports.createAuthor = (req, res) => {
 exports.updateBook = (req, res) => {
 	const { id } = req.params
 	const { name, isbn, author } = req.body
-	const authorId = author._id
 
-	Book.findByIdAndUpdate(id, { name, isbn, authorId }, { new: true })
+
+	Book.findByIdAndUpdate(id, { name, isbn, author }, { new: true })
 		.then(book => res.status(200).json({ Code: 200, book }))
 		.catch(err => res.status(500).json({ Code: 500, errMsg: err }))
 }

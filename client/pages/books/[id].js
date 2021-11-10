@@ -43,21 +43,11 @@ export default function Edit() {
 	const displayAuthors = () => {
 		return authors.map(mapAuthor => {
 			return (
-				mapAuthor._id === author._id ?
-				<Fragment key={mapAuthor._id}>
-					<option value={mapAuthor._id} selected>
-						{`${mapAuthor.first_name} ${mapAuthor.last_name}`}
-					</option>
-				</Fragment>
-
-				: 
-
 				<Fragment key={mapAuthor._id}>
 					<option value={mapAuthor._id} >
 						{`${mapAuthor.first_name} ${mapAuthor.last_name}`}
 					</option>
 				</Fragment>
-				
 			)
 		})
 	}

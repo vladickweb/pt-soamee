@@ -11,8 +11,6 @@ export default function Books() {
 		getBooks()
 	}, [])
 
-
-
 	const getBooks = () => {
 		booksService.getBooks().then(data => setBooks(data.data.books)).catch(err => console.log(err))
 	}
@@ -31,9 +29,7 @@ export default function Books() {
 
 	return (
 		<div className='container'>
-			<h1 className="text-center mt-5">
-				Books
-			</h1>
+			<h1 className='text-center mt-5'>Books</h1>
 			<div className='row justify-content-center align-items center mt-5'>{displayBooks()}</div>
 			<Modal />
 		</div>
